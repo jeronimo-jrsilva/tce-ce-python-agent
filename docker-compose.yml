@@ -1,8 +1,7 @@
 services:
   api:
     build: .
-    ports:
-      - "8000:8000"
+    network_mode: "host"
     volumes:
       - .:/app
     env_file:
@@ -10,5 +9,5 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - PYTHONPATH=/app
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - LLM_MODEL=${LLM_MODEL:-llama3.1}
+      - OPENAI_API_BASE=${OPENAI_API_BASE:-http://localhost:11434/v1}
