@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.0.2, pluggy-1.6.0 -- /usr/local/bin/python3.11
+cachedir: .pytest_cache
+rootdir: /app
+plugins: anyio-4.13.0, mock-3.12.0
+collecting ... collected 4 items
+
+tests/test_api.py::test_health_check PASSED                              [ 25%]
+tests/test_api.py::test_message_contract_validation PASSED               [ 50%]
+tests/test_api.py::test_api_response_format PASSED                       [ 75%]
+tests/test_api.py::test_session_isolation PASSED                         [100%]
+
+=============================== warnings summary ===============================
+../usr/local/lib/python3.11/site-packages/httpx/_client.py:680
+  /usr/local/lib/python3.11/site-packages/httpx/_client.py:680: DeprecationWarning: The 'app' shortcut is now deprecated. Use the explicit style 'transport=WSGITransport(app=...)' instead.
+    warnings.warn(message, DeprecationWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 4 passed, 1 warning in 1.69s =========================
