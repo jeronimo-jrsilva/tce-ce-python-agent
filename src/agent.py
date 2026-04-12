@@ -2,7 +2,7 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from src.tools import search_knowledge_base, extract_sections
+from src.tools import search_knowledge_base
 
 SYSTEM_PROMPT = """
 Você é um assistente virtual especializado em informações do TCE-CE (Tribunal de Contas do Estado do Ceará).
@@ -16,10 +16,14 @@ REGRAS SOBERANAS:
 """
 
 def get_agent_executor():
+    # Suporte a provedores customizados (ex: Ollama) via variável de ambiente
+    base_url = os.getenv("OPENAI_API_BASE")
+    
     llm = ChatOpenAI(
-        model="gpt-3.5-turbo", # Ou gpt-4o se configurado
+        model=os.getenv("LLM_MODEL", "gpt-3.5-turbo"),
         temperature=0,
-        openai_api_key=os.getenv("OPENAI_API_KEY")
+        openai_api_key=os.getenv("OPENAI_API_KEY", "no-key"),
+        base_url=base_url # Se None, usa o padrão da OpenAI
     )
     
     tools = [search_knowledge_base]
@@ -36,14 +40,13 @@ def get_agent_executor():
     return AgentExecutor(
         agent=agent,
         tools=tools,
-        verbose=True, # Útil para debug no log do Docker
+        verbose=True,
         handle_parsing_errors=True
     )
 
 async def run_agent(message: str, chat_history: list):
     executor = get_agent_executor()
     
-    # Executa o agente
     response = await executor.ainvoke({
         "input": message,
         "chat_history": chat_history
@@ -51,7 +54,6 @@ async def run_agent(message: str, chat_history: list):
     
     full_answer = response["output"]
     
-    # Lógica simples para extrair fontes do texto se o LLM seguiu o formato
     sources = []
     if "FONTES:" in full_answer:
         parts = full_answer.split("FONTES:")
