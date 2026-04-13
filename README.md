@@ -95,3 +95,20 @@ make test
 
 ---
 **Desenvolvido com excelência técnica para o Desafio TCE-CE 2026.**
+
+---
+
+## 🧭 Manual do Candidato (Dicas para a Entrevista)
+
+Como o sistema utiliza **Llama 3.1 local**, aqui estão algumas "perguntas de ouro" para demonstrar a robustez do agente:
+
+1.  **Teste de Especialidade:** "Explique a diferença entre Composição e Herança segundo a base."  
+    *O que observar:* Ele deve listar as fontes (Definição, Ponto de Atenção) e ser técnico.
+2.  **Teste de Pegadinha (Nuance):** "É correto colocar regra de negócio no Endpoint?"  
+    *O que observar:* Ele deve citar que, embora não recomendado, a base diz ser aceitável em projetos pequenos/MVPs.
+3.  **Teste de Fallback (Anti-Alucinação):** "Como configuro o banco de dados PostgreSQL?"  
+    *O que observar:* Ele deve responder educadamente que não encontrou a informação na base técnica.
+4.  **Teste de Persistência:** Faça uma pergunta, depois pergunte: "Pode me dar outro exemplo disso?"  
+    *O que observar:* O agente usa o histórico da sessão para entender que "disso" refere-se ao tópico anterior.
+
+---
