@@ -98,7 +98,7 @@ make test
 
 ---
 
-## 🧭 Manual do Candidato (Dicas para a Entrevista)
+## 🧪 Sugestões de Testes Manuais (Demonstração)
 
 Como o sistema utiliza **Llama 3.1 local**, aqui estão algumas "perguntas de ouro" para demonstrar a robustez do agente:
 
