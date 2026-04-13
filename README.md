@@ -62,4 +62,4 @@ O projeto implementa padrões de engenharia avançados, superando a base consist
 4. **Memória:** Pergunte algo, depois diga: "Pode resumir isso?" (O agente usará o histórico da sessão).
 
 ---
-**Desenvolvido com excelência técnica para o Desafio TCE-CE 2026.**
+**Desenvolvido para o Desafio TCE-CE 2026.**
