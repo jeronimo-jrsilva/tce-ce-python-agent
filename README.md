@@ -12,7 +12,7 @@ A solução foi projetada para ser agnóstica ao modelo de linguagem, permitindo
 - Docker e Docker Compose instalados.
 - Se for rodar localmente: **Ollama** rodando no host.
 
-### 1️⃣ Cenário A: Execução Local (Ollama)
+### 1️⃣ Cenário A: Execução Local (Ollama)- TESTADO
 Ideal para desenvolvimento offline e sem custos. Utiliza o modelo **Llama 3.1**.
 1. Certifique-se que o Ollama está rodando e o modelo baixado (`ollama pull llama3.1`).
 2. Execute: `make run-local`
@@ -24,7 +24,7 @@ Ideal para performance rápida usando o nível gratuito do Google AI Studio.
 2. Execute: `make run-gemini`
 3. Acesse: **[http://localhost:5173](http://localhost:5173)**
 
-### 3️⃣ Cenário C: Execução OpenAI (GPT-4o)
+### 3️⃣ Cenário C: Execução OpenAI (GPT-4o) - NÃO TESTADO
 Cenário padrão para produção e precisão máxima.
 1. Edite o `.env` com sua chave da OpenAI e limpe o campo `OPENAI_API_BASE`.
 2. Execute: `make run-openai`
