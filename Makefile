@@ -1,4 +1,4 @@
-.PHONY: setup run-local run-openai test stop clean
+.PHONY: setup run-local run-openai run-gemini test stop clean
 
 setup:
 	pip install -r requirements.txt
@@ -10,7 +10,11 @@ run-local:
 
 run-openai:
 	@echo "☁️ Iniciando Agente (API + React) com OPENAI (Nuvem)..."
-	LLM_MODEL=gpt-4o OPENAI_API_BASE="" docker compose up -d --build
+	LLM_MODEL=gpt-4o-mini OPENAI_API_BASE="" docker compose up -d --build
+
+run-gemini:
+	@echo "🌟 Iniciando Agente (API + React) com GEMINI (Nuvem/Google)..."
+	LLM_MODEL=gemini-flash-latest OPENAI_API_BASE=https://generativelanguage.googleapis.com/v1beta/openai/ docker compose up -d --build
 
 test:
 	pytest tests/test_api.py
