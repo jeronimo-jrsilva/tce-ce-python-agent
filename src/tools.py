@@ -18,7 +18,7 @@ async def search_knowledge_base(query: str) -> str:
         async with httpx.AsyncClient() as client:
             response = await client.get(kb_url)
             response.raise_for_status()
-            content = response.text
+            content = response.content.decode("utf-8")
             
             # Por enquanto, retornamos o conteúdo integral. 
             # Em versões futuras, podemos implementar busca semântica ou regex por query.

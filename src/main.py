@@ -1,5 +1,8 @@
 import logging
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import List, Dict
 from src.agent import run_agent
@@ -27,6 +30,21 @@ class MessageRequest(BaseModel):
 class MessageResponse(BaseModel):
     answer: str
     sources: List[Source]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+
+@app.get("/debug", response_class=HTMLResponse)
+async def debug_page():
+    with open("src/static/debug.html", "r") as f:
+        return f.read()
 
 @app.post("/messages", response_model=MessageResponse)
 async def chat(request: MessageRequest):

@@ -11,3 +11,13 @@ services:
       - PYTHONPATH=/app
       - LLM_MODEL=${LLM_MODEL:-llama3.1}
       - OPENAI_API_BASE=${OPENAI_API_BASE:-http://localhost:11434/v1}
+
+  frontend:
+    image: node:20-slim
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    command: npm run dev -- --host
+    network_mode: "host"
+    environment:
+      - VITE_API_URL=http://localhost:8000
